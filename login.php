@@ -1,35 +1,35 @@
 <?php
-// Set MySQL database credentials
+// database connection information
 $servername = "localhost";
-$username = "your-username";
-$password = "your-password";
-$dbname = "your-database-name";
+$username = "your_username";
+$password = "your_password";
+$dbname = "users";
 
-// Create connection to MySQL database
+// create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection to MySQL database
+// check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if form was submitted
+// if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Prepare and execute SQL statement to insert user data into MySQL database
-    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-    $stmt->bind_param("ss", $username, $password);
-    $stmt->execute();
-    $stmt->close();
+    // check if the username and password match a record in the database
+    $sql = "SELECT * FROM user_details WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
 
-    // Redirect to login page
-    header("Location: login.html");
-    exit;
+    if ($result->num_rows == 1) {
+        echo "Login successful!";
+    } else {
+        echo "Invalid username or password. Please try again.";
+    }
 }
 
-// Close connection to MySQL database
+// close the database connection
 $conn->close();
 ?>
+
