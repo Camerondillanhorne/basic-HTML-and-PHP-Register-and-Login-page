@@ -1,0 +1,62 @@
+---------------------------------------------------------------------------------------------------------------------------                                                                register.html
+
+This is an HTML registration form that can be used to collect user information such as a username and password. You can use this form as a template and modify it to suit your needs, for example, you can add more input fields to collect additional information, or you can style the form using CSS to make it look more visually appealing.
+
+To use this form, you will need to save the code to a file with a .html extension, then upload it to a web server. You can then navigate to the URL of the file in your web browser to view the registration form.
+
+When a user submits the form by clicking the "Register" button, the form data is sent to the server using the HTTP POST method and the action attribute of the form element. In this case, the action is set to "register.php", so the server will execute the PHP code in the register.php file and perform the necessary actions, such as adding the user details to a database.
+---------------------------------------------------------------------------------------------------------------------------
+                                                     register.php
+
+1.Create a new database in MySQL and name it users.
+2.Create a new table named user_details with the following fields: id (int, primary key, auto increment), username (varchar(50)), password (varchar(50)).
+3.Copy the PHP code I provided and save it in a new file named register.php.
+4.Upload the register.php file to your server.
+5.Modify your HTML registration form to use register.php as the action 
+6.Open your HTML registration form in a web browser and fill in the username and password fields, then click the "Register" button.
+7.If the registration is successful, you will see the message "Registration successful!" displayed on the screen. If the username already exists in the database, you will see the message "Username already exists. Please choose a different username." displayed instead.
+8.You can then check the user_details table in your MySQL database to see the new user details that were added.
+---------------------------------------------------------------------------------------------------------------------------
+                                                     login.html
+
+This is an HTML login form that can be used to collect user information such as a username and password. You can use this form as a template and modify it to suit your needs, for example, you can add more input fields to collect additional information, or you can style the form using CSS to make it look more visually appealing.
+
+To use this form, you will need to save the code to a file with a .html extension, then upload it to a web server. You can then navigate to the URL of the file in your web browser to view the login form.
+
+When a user submits the form by clicking the "Login" button, the form data is sent to the server using the HTTP POST method and the action attribute of the form element. In this case, the action is set to "login.php", so the server will execute the PHP code in the login.php file and perform the necessary actions, such as checking if the username and password match a record in the database.
+
+To use the PHP script that goes with this login form, you need to have a database with a table that contains the user details. The script should connect to the database and check if the username and password entered by the user match a record in the database. If the login is successful, you can perform additional actions, such as redirecting the user to a different page or setting a session variable to indicate that the user is logged in.
+---------------------------------------------------------------------------------------------------------------------------
+                                                     login.php
+
+1.Create a new database in MySQL and name it users.
+2.Create a new table named user_details with the following fields: id (int, primary key, auto increment), username (varchar(50)), password (varchar(50)).
+3.Copy the PHP code I provided and save it in a new file named login.php.
+4.Upload the login.php file to your server.
+5.Modify your HTML login form to use login.php as the action 
+6.Open your HTML login form in a web browser and enter a valid username and password, then click the "Login" button.
+7.If the login is successful, you will see the message "Login successful!" displayed on the screen. If the username and password do not match a record in the database, you will see the message "Invalid username or password. Please try again." displayed instead.
+8.You can then add additional functionality to the script, such as redirecting the user to a different page after successful login.
+---------------------------------------------------------------------------------------------------------------------------
+                                                     style.css
+
+To use the CSS script I provided, you can copy the code and paste it into a new file, then save it with the extension .css. For example, you could save it as style.css.
+
+Then, in your HTML files for the Login and Register pages, you can link to the CSS file by adding the following code to the <head> section: <link rel="stylesheet" type="text/css" href="style.css">
+This tells the browser to load the style.css file and apply the styles to the HTML elements on your page.
+
+Make sure the href attribute in the <link> tag points to the correct location of your style.css file. For example, if you saved the file in the same directory as your HTML files, you can use a relative path like in the example above. If you saved the file in a different directory, you would need to adjust the path accordingly.
+
+---------------------------------------------------------------------------------------------------------------------------
+                                                      Extra
+
+The first script (login.php) checks if the username and password entered by the user match a record in the database, and outputs a message indicating whether the login was successful or not.
+
+The second script (register.php) checks if the username entered by the user already exists in the database, and if not, inserts the new user details into the database.
+
+To use these scripts, you need to have a database with a table that contains the user details. You also need to modify the PHP code to include your own database connection information (servername, username, password, and dbname).
+
+In your HTML login and registration forms, you will need to set the action attribute to the corresponding PHP file (login.php for the login form and register.php for the registration form).
+
+Once you have everything set up correctly, you can navigate to the URL of the HTML login and registration forms in your web browser to use the scripts.
+---------------------------------------------------------------------------------------------------------------------------
