@@ -1,28 +1,35 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-	// get form data
-	$username = $_POST["username"];
-	$password = $_POST["password"];
+// Set MySQL database credentials
+$servername = "localhost";
+$username = "your-username";
+$password = "your-password";
+$dbname = "your-database-name";
 
-	// read user data from file
-	$file = fopen("users.txt", "r");
-	$found = false;
-	while(!feof($file)) {
-		$line = trim(fgets($file));
-		list($stored_username, $stored_password) = explode("|", $line);
-		if($username == $stored_username && $password == $stored_password) {
-			$found = true;
-			break;
-		}
-	}
-	fclose($file);
+// Create connection to MySQL database
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-	// redirect to appropriate page based on login success or failure
-	if($found) {
-		header("Location: welcome.html");
-	} else {
-		header("Location: login.html?error=1");
-	}
-	exit;
+// Check connection to MySQL database
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Check if form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Prepare and execute SQL statement to insert user data into MySQL database
+    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $username, $password);
+    $stmt->execute();
+    $stmt->close();
+
+    // Redirect to login page
+    header("Location: login.html");
+    exit;
+}
+
+// Close connection to MySQL database
+$conn->close();
 ?>
